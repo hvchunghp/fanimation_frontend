@@ -1,0 +1,7 @@
+<lib-toastify-toast-container [newestOnTop]="true" [pauseOnHover]="true" [pauseOnVisibilityChange]="true"
+  [iconLibrary]="'font-awesome'"></lib-toastify-toast-container>
+<app-navbar></app-navbar>
+<router-outlet (activate)="onActivate($event)"></router-outlet>
+<button class="back-to-top" (click)="gotoTop()"></button>
+
+<app-footer></app-footer>

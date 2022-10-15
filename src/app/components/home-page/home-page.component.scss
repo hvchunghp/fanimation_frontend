@@ -1,0 +1,197 @@
+a {
+  text-decoration: none;
+}
+
+#banner {
+  .carousel-inner {
+    .carousel-item {
+      width   : 100%;
+      height  : 300px;
+      overflow: hidden;
+
+      @media(max-width:913px) {
+        height: 200px;
+      }
+
+      @media(max-width: 768px) {
+        height: 120px;
+      }
+
+      @media(max-width: 541px) {
+        height: 100px;
+      }
+
+      img {
+        // width        : 300px;
+        // // height    : 25em !important;
+        // max-width    : auto !important;
+        // max-height   : 300px;
+        height    : 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.sub-banner {
+  width   : 100%;
+  height  : 145px;
+  overflow: hidden;
+
+  img {
+    width     : 100% !important;
+    max-height: 145px;
+    border    : 1px solid black;
+    object-fit: cover;
+  }
+}
+
+.featured-products {
+  cursor: pointer;
+
+  h3 {
+    color: black;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
+}
+
+.slide2 {
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.12);
+  width     : auto;
+
+  .content-box {
+    max-width : 300px;
+    max-height: 500px;
+
+    .add-to-cart-btn {
+      &:hover {
+        text-decoration: underline !important;
+        color          : #349e34 !important;
+      }
+    }
+
+    .glass-search {
+      display: none !important;
+    }
+
+    .img {
+      max-width          : auto;
+      height             : 300px;
+      object-fit         : cover;
+      background-position: center;
+      background-repeat  : no-repeat;
+      background-size    : cover;
+
+    }
+
+    &:hover {
+      .glass-search {
+        display      : flex !important;
+        position     : absolute;
+        top          : calc(50% - 25px);
+        left         : calc(50% - 25px);
+        width        : 50px;
+        height       : 50px;
+        border-radius: 50%;
+        box-shadow   : 0px 2px 15px rgba(0, 0, 0, 0.12);
+
+        background-color: #5394ec;
+        color           : white;
+        opacity         : 0.8;
+
+
+        &:hover {
+          color           : white;
+          background-color: black;
+          cursor          : pointer;
+
+        }
+      }
+    }
+  }
+
+}
+
+.handbook {
+  img {
+    max-width: 100%;
+  }
+}
+
+.email-promo {
+  border       : 2px solid #fff;
+  background   : transparent;
+  border-radius: 0;
+  font-size    : 1.4rem;
+  padding      : 1rem;
+  line-height  : 3rem;
+  height       : 3rem;
+  color        : #fff !important;
+  outline      : none;
+  width        : 60%;
+  max-width    : calc(100% - 96px);
+
+  &::placeholder {
+    color  : white;
+    opacity: 0.5;
+  }
+}
+
+.subcriber {
+  border       : none !important;
+  padding      : 0;
+  height       : 3rem;
+  width        : 6rem;
+  border-radius: 0px;
+
+  .InfoButton {
+    color      : #537f53;
+    font-weight: 600;
+  }
+}
+
+@keyframes bounce-loader {
+  to {
+    opacity  : 0.1;
+    transform: translateY(-1rem);
+  }
+}
+
+.bounce-loading {
+  display        : flex;
+  justify-content: center;
+  padding        : 150px 0;
+}
+
+.bounce-loading>div {
+  width        : 1rem;
+  height       : 1rem;
+  margin       : 0 0.5rem;
+  background   : #8385aa;
+  border-radius: 50%;
+  animation    : bounce-loader 0.6s infinite alternate;
+}
+
+.bounce-loading>div:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.bounce-loading>div:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.bounce-loading>div:last-child {
+  animation-delay: 0.45s;
+}
+
+.sub-footer {
+  background-image   : url('https://www.thefanstudio.com/asset/images/home-banner3.jpg');
+  background-position: top;
+  background-repeat  : no-repeat;
+  background-size    : cover;
+}

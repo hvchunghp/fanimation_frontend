@@ -1,0 +1,133 @@
+<div class="topbar d-none d-sm-flex py-1">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 col-lg-5 d-flex justify-content-start">
+        <span class="text-light" routerLink="/admin/products">Welcome to Fanimation</span>
+      </div>
+      <div class="col-6 col-lg-7 d-flex justify-content-end">
+        <a routerLink="/login" class="text-light">
+          Login
+        </a>
+        <span class="text-light">&nbsp;|&nbsp;</span>
+        <a routerLink="/" class="text-light">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+<header class="sticky-top">
+  <nav class="main-header navbar navbar-expand navbar-dark py-2 d-none d-sm-flex">
+    <div class="container">
+      <a class="navbar-brand col-md-6 col-lg-3" routerLink="/">
+        <div class="logo d-flex">
+          <img src="../../../assets/image/logo.png" alt="" srcset="">
+          <h1 class="text-dark">Fanimation</h1>
+        </div>
+      </a>
+      <div class="col-lg-5 col-md-6">
+        <ng-select [items]="fans" bindLabel="productName" placeholder="Search..." [(ngModel)]="fans">
+        </ng-select>
+      </div>
+
+      <div class="col-lg-4 d-none d-md-flex justify-content-end ">
+        <div class="item row d-none d-lg-flex">
+          <div class="col d-flex align-items-center justify-content-end ">
+            <a href="/cart" class="d-none d-lg-block cart-link">
+              <img class="mx-5" src="//bizweb.dktcdn.net/100/391/529/themes/771486/assets/icon-cart.png?1661223686369">
+            </a>
+            <img class="" src="//bizweb.dktcdn.net/100/391/529/themes/771486/assets/contact_2_icon.png?1661223686369">
+          </div>
+          <div class="col row">
+            <span class="text-dark">Purchase support</span>
+            <b class="text-dark">+84 387 497 691</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="bottomBar">
+    <div class="container">
+      <div class="row">
+        <nav class="navbar navbar-light d-flex d-sm-none col-6">
+          <div class="container-fluid">
+            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+              aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Fanimation</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                  aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ng-select [items]="fans" bindLabel="productName" placeholder="Search..." [(ngModel)]="fans">
+                </ng-select>
+                <ul class="navbar-nav justify-content-end flex-grow-1 py-3">
+                  <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <a class="nav-link" aria-current="page" routerLink="/">Home</a>
+                  </li>
+                  <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <a class="nav-link" routerLink="/about">About</a>
+                  </li>
+                  <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <a class="nav-link" routerLink="/products" id="dropdownId" data-bs-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">Products</a>
+                  </li>
+                  <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <a class="nav-link" routerLink="/promotion">Promotion</a>
+                  </li>
+                  <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <a class="nav-link" routerLink="/contact">Contact</a>
+                  </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" routerLink="/" id="dropdownId" data-bs-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">Support</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownId" data-bs-dismiss="offcanvas">
+                      <a class="dropdown-item" routerLink="/shopping-guide">Shopping guide</a>
+                      <a class="dropdown-item" routerLink="/payment-method">Payment methods</a>
+                      <a class="dropdown-item" routerLink="/shipping-policy">Shipping policy</a>
+                      <a class="dropdown-item" routerLink="/return-policy">Return policy</a>
+                      <a class="dropdown-item" routerLink="/maintenance-policy">Maintenance policy</a>
+                      <a class="dropdown-item" routerLink="/FAQ">FAQ</a>
+                    </div>
+                  </li>
+                  <li class="nav-item" data-bs-dismiss="offcanvas">
+                    <a class="nav-link" routerLink="/cart">Cart</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <nav id="navbar" class="navbar d-flex justify-content-center d-none d-sm-flex">
+          <ul>
+            <li><a routerLink="/">Home</a></li>
+            <li><a routerLink="/about">About</a></li>
+            <li class="dropdown"><a routerLink="/products"><span>Products</span></a>
+            </li>
+            <li><a routerLink="/promotion">Promotion</a></li>
+            <li><a routerLink="/contact">Contact</a></li>
+            <li class="dropdown"><a outerLink=""><span>Support</span> <i class="fa-solid fa-angle-down"></i></a>
+              <ul class="child-menu">
+                <li><a routerLink="/shopping-guide">Shopping guide</a></li>
+                <li><a routerLink="/payment-method">Payment methods</a></li>
+                <li><a routerLink="/shipping-policy">Shipping policy</a></li>
+                <li><a routerLink="/return-policy">Return policy</a></li>
+                <li><a routerLink="/maintenance-policy">Maintenance policy</a></li>
+                <li><a routerLink="/FAQ">FAQ</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <a class="navbar-brand d-flex d-sm-none col-6 justify-content-end align-items-center" routerLink=" /">
+          <div class="logo">
+            <h1 class="typed-out text-light" style="font-size: 2em">Fanimation</h1>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

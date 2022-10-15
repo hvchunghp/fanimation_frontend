@@ -1,0 +1,232 @@
+<div *ngIf="!checkLoad">
+  <div class="container my-3">
+    <div class="row">
+      <div id="banner" class="carousel slide col-12 col-lg-9" data-bs-ride="true">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#banner" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#banner" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#banner" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#banner" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#banner" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a routerLink="/"><img src="assets/image/banner1.jpg" class="d-block w-100 img-fluid" alt="..."></a>
+          </div>
+          <div class="carousel-item">
+            <a routerLink="/"><img src="assets/image/banner2.jpg" class="d-block w-100 img-fluid" alt="..."></a>
+          </div>
+          <div class="carousel-item">
+            <a routerLink="/"><img src="assets/image/banner3.jpg" class="d-block w-100 img-fluid" alt="..."></a>
+          </div>
+          <div class="carousel-item">
+            <a routerLink="/"><img src="assets/image/banner4.jpg" class="d-block w-100 img-fluid" alt="..."></a>
+          </div>
+          <div class="carousel-item">
+            <a routerLink="/"><img src="assets/image/banner5.jpg" class="d-block w-100 img-fluid" alt="..."></a>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="col-lg-3 row d-none d-lg-block">
+        <div class="sub-banner mb-2 col-lg-12 col-6">
+          <a routerLink="/">
+            <img src="assets/image//banner6.jpg" alt="">
+          </a>
+        </div>
+        <div class="sub-banner mt-2 col-lg-12 col-6">
+          <a routerLink="/">
+            <img src="assets/image//banner7.jpg" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="featured-products my-5">
+      <h3>Best sellers</h3>
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let item of bestSeller">
+          <div class="slide slide2 m-2 p-2 d-flex justify-content-center align-items-center">
+            <div class="row content-box">
+              <span class="glass-search d-flex justify-content-center align-items-center" (click)="getProduct(item.id)"
+                data-bs-toggle="modal" data-bs-target="#model"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <a [routerLink]="['/product', item.id]">
+                <div class="img m-1" style="background-image: url({{item.image}})"></div>
+                <div class="row">
+                  <div class="d-flex align-items-center" style="height: 50px;">
+                    <b class="text-dark" for="">{{item.productName}}</b>
+                  </div>
+                </div>
+              </a>
+              <div class="d-flex justify-content-between">
+                <b class="text-danger">{{item.cost}}</b>
+                <b class="text-primary add-to-cart-btn" (click)="addToCart(item.id)">
+                  <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                </b>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="featured-products my-5">
+      <h3>Good price</h3>
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let item of cheapPrice">
+          <div class="slide slide2 m-2 p-2 d-flex justify-content-center align-items-center">
+            <div class="row content-box">
+              <span class="glass-search d-flex justify-content-center align-items-center" (click)="getProduct(item.id)"
+                data-bs-toggle="modal" data-bs-target="#model"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <a [routerLink]="['/product', item.id]">
+                <div class="img m-1" style="background-image: url({{item.image}})"></div>
+                <div class="row">
+                  <div class="d-flex align-items-center" style="height: 50px;">
+                    <b class="text-dark" for="">{{item.productName}}</b>
+                  </div>
+                </div>
+              </a>
+              <div class="d-flex justify-content-between">
+                <b class="text-danger">{{item.cost}}</b>
+                <b class="text-primary add-to-cart-btn" (click)="addToCart(item.id)">
+                  <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                </b>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+    <div class="handbook my-5 row">
+      <div class="col-md-8 col-12">
+        <h3>HANDBOOK - GOOD EXPERIENCE</h3>
+        <div class="row my-3">
+          <div class="col-md-6 col-12 mb-3">
+            <a routerLink="/">
+              <img
+                src="https://bizweb.dktcdn.net/thumb/grande/100/391/557/articles/583-quat-dien-gia-thap-1-9b554afd-04a1-4dbd-876c-bff4ddbaa855.jpg?v=1597661175483"
+                alt="">
+              <label for="">Dangers from using poor quality electric fans</label>
+            </a>
+            <p>Thursday, 8/9/2022</p>
+            <span>Hot summer is the time when people rush to buy cooling equipment, in which electric fans...</span>
+          </div>
+          <div class="col-md-6 col-12 mb-3">
+            <a routerLink="/">
+              <img
+                src="https://bizweb.dktcdn.net/thumb/grande/100/391/557/articles/quat-tran-den-dep-eaa2b41c-e42f-4505-b65f-3938d74d0030.jpg?v=1597659738957"
+                alt="">
+              <label for="">Decorative ceiling fan - Trend of the times</label>
+            </a>
+            <p>Friday, 9/9/2022</p>
+            <span>Humans always pursue truth - goodness - beauty, over time the concept of beauty also has many
+              ...</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-12">
+        <h3>PROMOTION NEWS</h3>
+        <a routerLink="/" class="row my-3">
+          <img class="col-6" src="https://dienmaythiennamhoa.vn/static/images/1024X480(1).png" alt="">
+          <span class="col-6">BACK TO SCHOOL - UP TO 40% OFF</span>
+        </a>
+        <a routerLink="/" class="row my-3">
+          <img class="col-6" src="https://dienmaythiennamhoa.vn/static/images/BANNER%202/THUMBNAIL.png" alt="">
+          <span class="col-6">BACK 2 OLD SCHOOL SEPTEMBER - 2022</span>
+        </a>
+        <a routerLink="/" class="row my-3">
+          <img class="col-6" src="https://dienmaythiennamhoa.vn/static/images/BANNER%202/400x209(6).jpg" alt="">
+          <span class="col-6">ACCURATE POINTS FOR EXCELLENT GIFTS</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="sub-footer py-3">
+    <div class="container">
+      <div class="row py-3">
+        <div class="d-flex align-items-center">
+          <div class="col-md-2 col-5">
+            <svg width="136" height="137" viewBox="0 0 136 137" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-labelledby="NewsletterSave" role="img">
+              <title id="NewsletterSave">Save 10%</title>
+              <circle cx="67.9862" cy="68.6826" r="67.8727" fill="white"></circle>
+              <path
+                d="M36.8419 70.7655L30.9619 75.5955L28.0219 72.1095L37.3039 64.6335H41.8819V94.3695H36.8419V70.7655ZM68.6087 79.5015C68.6087 81.9095 68.3707 84.0795 67.8947 86.0115C67.4467 87.9435 66.7747 89.5815 65.8787 90.9255C65.0107 92.2695 63.9187 93.3055 62.6027 94.0335C61.3147 94.7615 59.8307 95.1255 58.1507 95.1255C56.4707 95.1255 54.9727 94.7615 53.6567 94.0335C52.3407 93.3055 51.2347 92.2695 50.3387 90.9255C49.4427 89.5815 48.7567 87.9435 48.2807 86.0115C47.8327 84.0795 47.6087 81.9095 47.6087 79.5015C47.6087 77.0935 47.8327 74.9235 48.2807 72.9915C48.7567 71.0595 49.4427 69.4215 50.3387 68.0775C51.2347 66.7335 52.3407 65.6975 53.6567 64.9695C54.9727 64.2415 56.4707 63.8775 58.1507 63.8775C59.8307 63.8775 61.3147 64.2415 62.6027 64.9695C63.9187 65.6975 65.0107 66.7335 65.8787 68.0775C66.7747 69.4215 67.4467 71.0595 67.8947 72.9915C68.3707 74.9235 68.6087 77.0935 68.6087 79.5015ZM63.4427 79.5015C63.4427 78.4655 63.3727 77.2895 63.2327 75.9735C63.1207 74.6575 62.8687 73.4115 62.4767 72.2355C62.1127 71.0595 61.5807 70.0795 60.8807 69.2955C60.1807 68.4835 59.2707 68.0775 58.1507 68.0775C57.0027 68.0775 56.0787 68.4835 55.3787 69.2955C54.6787 70.0795 54.1327 71.0595 53.7407 72.2355C53.3767 73.4115 53.1247 74.6575 52.9847 75.9735C52.8447 77.2895 52.7747 78.4655 52.7747 79.5015C52.7747 80.5375 52.8447 81.7135 52.9847 83.0295C53.1247 84.3455 53.3767 85.5775 53.7407 86.7255C54.1327 87.8735 54.6787 88.8535 55.3787 89.6655C56.0787 90.4495 57.0027 90.8415 58.1507 90.8415C59.2707 90.8415 60.1807 90.4495 60.8807 89.6655C61.5807 88.8535 62.1127 87.8735 62.4767 86.7255C62.8687 85.5775 63.1207 84.3455 63.2327 83.0295C63.3727 81.7135 63.4427 80.5375 63.4427 79.5015ZM93.5295 87.0615C93.5295 85.9695 93.7255 84.9615 94.1175 84.0375C94.5375 83.0855 95.0975 82.2595 95.7975 81.5595C96.5255 80.8315 97.3515 80.2715 98.2755 79.8795C99.2275 79.4595 100.249 79.2495 101.341 79.2495C102.433 79.2495 103.441 79.4595 104.365 79.8795C105.317 80.2715 106.143 80.8315 106.843 81.5595C107.571 82.2595 108.131 83.0855 108.523 84.0375C108.943 84.9615 109.153 85.9695 109.153 87.0615C109.153 88.1535 108.943 89.1755 108.523 90.1275C108.131 91.0515 107.571 91.8775 106.843 92.6055C106.143 93.3055 105.317 93.8655 104.365 94.2855C103.441 94.6775 102.433 94.8735 101.341 94.8735C100.249 94.8735 99.2275 94.6775 98.2755 94.2855C97.3515 93.8655 96.5255 93.3055 95.7975 92.6055C95.0975 91.8775 94.5375 91.0515 94.1175 90.1275C93.7255 89.1755 93.5295 88.1535 93.5295 87.0615ZM105.121 87.0615C105.121 85.9975 104.757 85.1015 104.029 84.3735C103.301 83.6455 102.405 83.2815 101.341 83.2815C100.277 83.2815 99.3815 83.6455 98.6535 84.3735C97.9255 85.1015 97.5615 85.9975 97.5615 87.0615C97.5615 88.1255 97.9255 89.0215 98.6535 89.7495C99.3815 90.4775 100.277 90.8415 101.341 90.8415C102.405 90.8415 103.301 90.4775 104.029 89.7495C104.757 89.0215 105.121 88.1255 105.121 87.0615ZM73.4535 71.9415C73.4535 70.8495 73.6495 69.8415 74.0415 68.9175C74.4615 67.9655 75.0215 67.1395 75.7215 66.4395C76.4495 65.7115 77.2755 65.1515 78.1995 64.7595C79.1515 64.3395 80.1735 64.1295 81.2655 64.1295C82.3575 64.1295 83.3655 64.3395 84.2895 64.7595C85.2415 65.1515 86.0675 65.7115 86.7675 66.4395C87.4955 67.1395 88.0555 67.9655 88.4475 68.9175C88.8675 69.8415 89.0775 70.8495 89.0775 71.9415C89.0775 73.0335 88.8675 74.0555 88.4475 75.0075C88.0555 75.9315 87.4955 76.7575 86.7675 77.4855C86.0675 78.1855 85.2415 78.7455 84.2895 79.1655C83.3655 79.5575 82.3575 79.7535 81.2655 79.7535C80.1735 79.7535 79.1515 79.5575 78.1995 79.1655C77.2755 78.7455 76.4495 78.1855 75.7215 77.4855C75.0215 76.7575 74.4615 75.9315 74.0415 75.0075C73.6495 74.0555 73.4535 73.0335 73.4535 71.9415ZM85.0455 71.9415C85.0455 70.8775 84.6815 69.9815 83.9535 69.2535C83.2255 68.5255 82.3295 68.1615 81.2655 68.1615C80.2015 68.1615 79.3055 68.5255 78.5775 69.2535C77.8495 69.9815 77.4855 70.8775 77.4855 71.9415C77.4855 73.0055 77.8495 73.9015 78.5775 74.6295C79.3055 75.3575 80.2015 75.7215 81.2655 75.7215C82.3295 75.7215 83.2255 75.3575 83.9535 74.6295C84.6815 73.9015 85.0455 73.0055 85.0455 71.9415ZM98.2755 63.2895L101.761 64.8855L84.2895 95.7135L80.8035 94.1175L98.2755 63.2895Z"
+                fill="#537F53"></path>
+              <path
+                d="M50.1927 41.17C49.9261 40.8233 49.5461 40.5367 49.0527 40.31C48.5727 40.07 48.0861 39.95 47.5927 39.95C47.2994 39.95 47.0061 39.99 46.7127 40.07C46.4194 40.1367 46.1527 40.25 45.9127 40.41C45.6727 40.5567 45.4727 40.7567 45.3127 41.01C45.1661 41.25 45.0927 41.5433 45.0927 41.89C45.0927 42.21 45.1594 42.4833 45.2927 42.71C45.4261 42.9367 45.6061 43.13 45.8327 43.29C46.0727 43.45 46.3594 43.59 46.6927 43.71C47.0261 43.83 47.3927 43.95 47.7927 44.07C48.2461 44.2167 48.7127 44.3833 49.1927 44.57C49.6861 44.7567 50.1327 45.0033 50.5327 45.31C50.9461 45.6167 51.2794 46.0033 51.5327 46.47C51.7994 46.9367 51.9327 47.5167 51.9327 48.21C51.9327 48.97 51.7927 49.6367 51.5127 50.21C51.2327 50.77 50.8594 51.2367 50.3927 51.61C49.9261 51.9833 49.3794 52.2633 48.7527 52.45C48.1261 52.6367 47.4661 52.73 46.7727 52.73C45.8527 52.73 44.9527 52.5633 44.0727 52.23C43.1927 51.8833 42.4727 51.3767 41.9127 50.71L43.7127 49.03C44.0594 49.51 44.5194 49.89 45.0927 50.17C45.6794 50.45 46.2527 50.59 46.8127 50.59C47.1061 50.59 47.4061 50.5567 47.7127 50.49C48.0194 50.41 48.2927 50.2833 48.5327 50.11C48.7861 49.9367 48.9861 49.7233 49.1327 49.47C49.2927 49.2033 49.3727 48.8767 49.3727 48.49C49.3727 48.1167 49.2861 47.81 49.1127 47.57C48.9394 47.3167 48.7061 47.1033 48.4127 46.93C48.1194 46.7433 47.7727 46.5833 47.3727 46.45C46.9727 46.3167 46.5527 46.1767 46.1127 46.03C45.6861 45.8967 45.2594 45.7367 44.8327 45.55C44.4061 45.3633 44.0194 45.1167 43.6727 44.81C43.3394 44.5033 43.0661 44.13 42.8527 43.69C42.6394 43.2367 42.5327 42.6767 42.5327 42.01C42.5327 41.29 42.6794 40.67 42.9727 40.15C43.2794 39.63 43.6727 39.2033 44.1527 38.87C44.6461 38.5233 45.1994 38.27 45.8127 38.11C46.4394 37.9367 47.0727 37.85 47.7127 37.85C48.4327 37.85 49.1594 37.9767 49.8927 38.23C50.6394 38.4833 51.2861 38.8633 51.8327 39.37L50.1927 41.17ZM59.4971 38.21H61.6771L67.7771 52.37H64.8971L63.5771 49.13H57.4371L56.1571 52.37H53.3371L59.4971 38.21ZM62.6971 46.97L60.5171 41.21L58.2971 46.97H62.6971ZM67.4127 38.21H70.2327L74.1327 49.11H74.2127L78.1527 38.21H80.8727L75.1927 52.37H73.0127L67.4127 38.21ZM82.8391 38.21H92.2191V40.41H85.3591V44.01H91.8591V46.13H85.3591V50.13H92.5791V52.37H82.8391V38.21Z"
+                fill="#537F53"></path>
+              <circle cx="67.9862" cy="68.4924" r="62.6737" stroke="#537F53" stroke-width="3"></circle>
+            </svg>
+          </div>
+          <div class="col-md-10 col-7 py-3">
+            <div class="row">
+              <h4 class="text-white">
+                Sign up to stay in the know
+                and save on your next order.
+              </h4>
+              <div class="d-flex input-group my-2">
+                <input type="email" name="" class="email-promo" value="" placeholder="Enter your Email"
+                  autocorrect="off" autocapitalize="off">
+                <button type="submit" class="btn btn-light subcriber" name="commit"><span
+                    class="InfoButton">Submit</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="model">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Product details</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" *ngIf="productData">
+        <div class="row" *ngFor="let item of productData">
+          <div class="col-12 col-lg-4 col-md-4">
+            <img src="{{item.image}}" alt="" width="100%">
+          </div>
+          <div class="col-12 col-lg-8 col-md-8">
+            <div class="row">
+              <h1>{{item.productName}}</h1>
+              <div>
+                Status:
+                <span class="text-success" *ngIf="item.status === 'In stock'"> <b>{{item.status}}</b></span>
+                <span class="text-danger" *ngIf="item.status === 'Out stock'"> <b>{{item.status}}</b></span>
+                <span class="px-3">Category: <b>{{item.categoryName}}</b></span>
+              </div>
+              <h1 class="text-success">{{item.cost}}</h1>
+              <button class="btn btn-primary col-lg-4 col-6 mt-4 mx-1" *ngIf="item.status === 'In stock'"
+                (click)="addToCart(item.id)">
+                <span><i class="fa-solid fa-cart-shopping"></i> Add to cart</span>
+              </button>
+              <button type="submit" class="btn btn-secondary col-lg-4 col-6 mt-4 mx-1"
+                *ngIf="item.status === 'Out stock'">
+                <span>Out stock!</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bounce-loading" *ngIf="!productData">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-loading *ngIf="checkLoad"></app-loading>

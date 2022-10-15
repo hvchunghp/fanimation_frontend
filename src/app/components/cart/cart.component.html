@@ -1,0 +1,234 @@
+<section class="h-100 gradient-custom">
+  <div class="container" *ngIf="cart">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-lg-8 col-md-12 col-12">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Cart - {{cart.length}} items</h5>
+          </div>
+          <div class="card-body">
+            <div class="row" *ngIf="cart.length === 0">
+              <span class="my-3 mx-3">No products. Return to the store to continue shopping.</span>
+              <a class="my-3 mx-3" routerLink="/products"><i class="fa-solid fa-angle-left"></i> Back to store</a>
+            </div>
+            <div class="row" *ngFor="let item of cart">
+              <a class="col-lg-3 col-md-3 col-6 mb-4 mb-lg-0" [routerLink]="['/product', item.productId]">
+                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                  <img src='{{item.image}}' class="w-100" alt="Blue Jeans Jacket" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                  </a>
+                </div>
+              </a>
+
+              <div class="col-lg-5 col-md-5 col-6 mb-4 mb-lg-0">
+                <p><strong>{{item.productName}}</strong></p>
+                <p>Product ID: {{item.productId}}</p>
+                <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                  title="Remove item" (click)="deleteProductFromCart(item.id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
+                  title="Move to the wish list">
+                  <i class="fas fa-heart"></i>
+                </button>
+              </div>
+
+              <div class="col-lg-4 col-md-4 col-12 mb-4 mb-lg-0 d-flex align-items-center">
+                <div class="row justify-content-center">
+                  <div class="input-group mb-3">
+                    <!-- <button class="btn btn-primary px-3 me-2"
+                      onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                      <i class="fas fa-minus"></i>
+                    </button> -->
+                    <input min="1" type="number" class="form-control text-center" value="{{item.count}}"
+                      (change)="getCountToChange(item.id, $event)">
+                    <!-- <button class="btn btn-primary px-3 ms-2"
+                      onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                      <i class="fas fa-plus"></i>
+                    </button> -->
+                  </div>
+                  <p class="text-center">
+                    <strong>{{item.cost}}</strong>
+                  </p>
+
+                </div>
+              </div>
+              <hr class="my-4" />
+
+            </div>
+          </div>
+        </div>
+        <div class="card mb-4" *ngIf="cart && cart.length > 0">
+          <div class="card-body">
+            <p><strong>Estimated delivery</strong></p>
+            <p class="mb-0">1-2 days from the date of order</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12 col-12" *ngIf="cart && cart.length > 0">
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Receiver's information</h5>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="form-floating my-3">
+                <input type="text" class="form-control" id="fullname" placeholder="...">
+                <label for="fullname">Fullname</label>
+              </div>
+              <div class="form-floating my-3">
+                <input type="phone" class="form-control" id="phoneNumber" placeholder="...">
+                <label for="phoneNumber">Phone number</label>
+              </div>
+              <div class="form-floating my-3">
+                <select name="" id="provinces" class="form-select" (change)="getDistrictByProvince($event)">
+                  <option value="" selected hidden></option>
+                  <option *ngFor="let item of provinces" value={{item.code}}>{{item.name}}</option>
+                </select>
+
+                <label for="provinces" class="form-label">Choose province</label>
+              </div>
+              <div class="d-flex">
+                <div class="form-floating w-100" style="margin-right: 5px">
+                  <select name="" id="district" class="form-select" (change)="getWardsByDistrict($event)"
+                    *ngIf="checkProvinces">
+                    <option value="" selected hidden></option>
+                    <option *ngFor="let item of district" value={{item.code}}>{{item.name}}</option>
+                  </select>
+                  <select name="" id="district" class="form-select" *ngIf="!checkProvinces" disabled>
+                    <option value="" selected hidden></option>
+                  </select>
+                  <label for="provinces" class="form-label">Choose district</label>
+                </div>
+                <div class="form-floating w-100">
+                  <select name="" id="ward" class="form-select" *ngIf="checkDistrict">
+                    <option value="" selected hidden></option>
+                    <option *ngFor="let item of wards" value={{item.code}}>{{item.name}}</option>
+                  </select>
+                  <select name="" id="ward" class="form-select" *ngIf="!checkDistrict" disabled>
+                    <option value="" selected hidden></option>
+                  </select>
+                  <label for="provinces" class="form-label">Choose ward</label>
+                </div>
+              </div>
+              <div class="form-floating my-3">
+                <input type="text" class="form-control" id="address" placeholder="...">
+                <label for="address">Detailed address (house number, street name,...)</label>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Summary</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                Products
+                <span>{{price}}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0 border-0">
+                Shipping
+                <span>Free</span>
+              </li>
+              <li class="list-group-item px-0 border-0">
+                <div class="form-floating my-3 d-flex">
+                  <input type="text" class="form-control" id="discount" placeholder="..."
+                    (change)="discountCode($event)" />
+                  <button class="btn btn-primary apply" (click)="applyDiscountCode()">Apply</button>
+                  <label for="discount">Enter discount code (if any)</label>
+                </div>
+              </li>
+              <li class="list-group-item px-0 border-0" *ngIf="currentDiscount > 0 && applyDiscount">
+                <b class="text-success">Congrats you got {{discount}}% off</b>
+              </li>
+              <li class="list-group-item px-0" *ngIf="!currentDiscount && applyDiscount">
+                <b class="text-danger">Discount code does not exist</b>
+              </li>
+              <li class="list-group-item px-0 d-flex justify-content-between"
+                *ngIf="currentDiscount > 0 && applyDiscount">
+                <b>Reduce:</b> <b>- {{reduce}}</b>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                <div>
+                  <strong>Total price</strong>
+                  <strong>
+                    <p class="mb-0">(including VAT)</p>
+                  </strong>
+                </div>
+                <span><strong>{{totalPrice}}</strong></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card mb-4">
+          <div class="card-header py-3">
+            <h5 class="mb-0">Payment method</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <!-- <div class="my-1">
+                <div class="list-group" id="list-tab border-0" role="tablist">
+                  <a class="list-group-item list-group-item-action active" id="cod-list" data-bs-toggle="list"
+                    href="#cod" role="tab" aria-controls="cod">Cash On Delivery (COD)</a>
+                  <a class="list-group-item list-group-item-action" id="banking-list" data-bs-toggle="list"
+                    href="#banking" role="tab" aria-controls="banking">Online transfer</a>
+                </div>
+              </div> -->
+              <div class="my-1 content-box">
+                <div class="content-box_row">
+                  <input type="radio" name="paymentMethod" id="COD" (click)="codMethod()">
+                  <label for="COD" class="mx-1">Cash On Delivery (COD)</label>
+                </div>
+                <div class="content-box_row">
+                  <input type="radio" name="paymentMethod" id="online" (click)="onlineMethod()">
+                  <label for="online" class="mx-1">Online transfer</label>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="tab-content" id="nav-tabContent">
+                  <div id="cod" aria-labelledby="cod-list" *ngIf="cod">
+                    <b>
+                      You only have to pay after receiving the items
+                    </b>
+                  </div>
+                  <div id="banking" aria-labelledby="banking-list" *ngIf="online">
+                    <b>
+                      <p>
+                        Bank name: MB bank
+                      </p>
+                      <p>
+                        Account number: 000387497691
+                      </p>
+                      <p>
+                        Account name: Hoang Viet Chung
+                      </p>
+                      <p>
+                        Transfer content: fullname + phone number
+                      </p>
+                    </b>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-between mt-3">
+                <b>
+                  <a routerLink="/products">
+                    <i class="fa-regular fa-angle-left"></i>
+                    See more products
+                  </a>
+                </b>
+                <button type="button" class="btn btn-success btn-lg btn-block" routerLink="/order-success">
+                  Pay now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-loading *ngIf="!cart"></app-loading>
+</section>

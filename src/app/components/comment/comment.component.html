@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="commentForm" class="container my-5">
+    <h5>Comment and reviews</h5>
+
+    <div class="row">
+      <div class="d-flex justify-content-center">
+        <textarea name="" rows="3" formControlName="comment" class="p-3 w-100"
+          placeholder="Enter your comments and reviews..."></textarea>
+      </div>
+      <div class="d-flex justify-content-start">
+        <button type="submit" class="btn btn-primary mt-3" (click)="sendComment(id)">Send</button>
+      </div>
+    </div>
+  </form>
+  <div class="mx-3" *ngFor="let item of commentData">
+    <div class="comment-box d-flex">
+      <img src="https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png"
+        class="rounded-circle border border-black" width="30px" height="30px" alt="">
+      <div class="px-2 d-flex align-items-center">
+        <b style="font-size: 15px;">Guest</b>
+        <span class="px-2">{{item.time}}</span>
+      </div>
+    </div>
+    <div style="padding-left: 38px">
+      <span>{{item.comment}}</span>
+      <div class="d-flex align-items-center pt-1">
+        <span class="text-primary" style="cursor: pointer;"><i class="fa-sharp fa-solid fa-thumbs-up"></i>
+          Like</span>
+        <span class="text-danger px-2" style="cursor: pointer;"><i class="fa-solid fa-thumbs-down"></i>
+          Dislike</span>
+        <span (click)="deleteComment(item.id)" style="cursor: pointer;"><i class="fa-sharp fa-solid fa-trash"></i>
+        </span>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>

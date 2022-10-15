@@ -1,0 +1,22 @@
+.back-to-top {
+  z-index           : 8;
+  background-image  : url("../assets/image/top.png");
+  position          : fixed;
+  right             : 2rem;
+  bottom            : 3rem;
+  display           : inline-block;
+  width             : 26px;
+  height            : 48px;
+  background-repeat : no-repeat;
+  transition        : all 5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  border            : none;
+  background-color  : transparent;
+}
+
+
+
+.back-to-top:hover {
+  background-position: bottom;
+  height             : 65px;
+}

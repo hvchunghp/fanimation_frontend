@@ -1,0 +1,72 @@
+<app-header></app-header>
+<form [formGroup]="productForm" class="container mt-5">
+  <div class="row">
+    <div class="mb-3 col-3">
+      <label for="productName" class="form-label">Product name</label>
+      <input type="text" class="form-control" id="productName" formControlName="productName"
+        placeholder="Enter product name" />
+    </div>
+    <div class="mb-3 col-3">
+      <label for="Cost" class="form-label">Cost</label>
+      <input type="number" class="form-control" formControlName="cost" id="Cost" placeholder="Enter cost value" />
+    </div>
+    <div class="mb-3 col-3">
+      <label for="Category" class="form-label">Category</label>
+      <select name="" id="Category" class="form-control" formControlName="category">
+        <option value="" hidden selected>Choose category</option>
+        <option *ngFor="let item of category" value={{item.category}}>{{item.categoryName}}</option>
+      </select>
+    </div>
+
+    <div class="mb-3 col-3">
+      <label for="image" class="form-label">Product image</label>
+      <input type="text" class="form-control" id="image" formControlName="image" placeholder="Enter product image link"
+        (ngModelChange)="previewImage($event)" />
+      <img src="{{previewImg}}" alt="" style="max-width: 20em">
+    </div>
+
+    <div class="mb-3">
+      <label for="Description" class="form-label">Description (optional)</label>
+      <form accept-charset="UTF-8" novalidate class="col-12" formControlName="description">
+        <div class="form-group has-feedback" [ngClass]="{ 'has-error': myckeditor.invalid && myckeditor.touched }">
+          <ckeditor [(ngModel)]="description" #myckeditor="ngModel" name="myckeditor" required debounce="500">
+          </ckeditor>
+        </div>
+      </form>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-3" (click)="productSubmit()">Submit</button>
+</form>
+
+
+<div class="container mt-5">
+  <table class="table">
+    <thead>
+      <tr class="row">
+        <th class="col">Product name</th>
+        <th class="col">Cost</th>
+        <th class="col">Category</th>
+        <th class="col">Image</th>
+        <th class="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of readData" class="row">
+        <td class="d-flex align-items-center col">{{ item.productName }}</td>
+        <td class="d-flex align-items-center col">{{ item.cost }}</td>
+        <td class="d-flex align-items-center col">{{ item.categoryName }}</td>
+        <td class="d-flex align-items-center col">
+          <img [src]="item.image" alt="" />
+        </td>
+        <td class="d-flex align-items-center col">
+          <a class="btn mx-1" [routerLink]="['/admin/products', item.id]">
+            <i class="fa-solid fa-pencil text-warning"></i>
+          </a>
+          <button class="btn mx-1" (click)=" deleteProduct(item.id)">
+            <i class="fa-solid fa-trash text-danger"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

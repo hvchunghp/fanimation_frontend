@@ -1,0 +1,16 @@
+tbody {
+  .btn {
+    border: none;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  img {
+    width     : 150px;
+    height    : 150px;
+    overflow  : hidden;
+    object-fit: contain;
+  }
+}

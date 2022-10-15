@@ -1,0 +1,113 @@
+.container {
+  width: 100vw !important;
+
+  .image-product {
+    overflow  : hidden;
+    object-fit: cover;
+    cursor    : pointer;
+  }
+
+  .description {
+    overflow: hidden;
+
+    p {
+      width: 100vw !important;
+
+      img {
+        width: 100vw !important;
+      }
+    }
+  }
+
+  .product-policy,
+  .product-news {
+    background   : #f7f8f9;
+    padding      : 0;
+    margin-bottom: 15px;
+    height       : fit-content;
+
+    h2 {
+      background   : #e0e0e0;
+      border-bottom: 1px #e1e1e1 solid;
+      font-size    : 20px;
+      margin       : 0;
+      padding      : 10px;
+    }
+
+    ul {
+      list-style: none outside;
+      margin    : 0;
+      padding   : 0;
+
+      li {
+        display     : flex;
+        align-items : center;
+        padding     : 5px 10px;
+        padding-left: 20px;
+        position    : relative;
+
+        i {
+          color: #000;
+        }
+
+        span {
+          color      : #0d6efd;
+          cursor     : pointer;
+          margin-left: 10px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+
+    p {
+      margin    : 0;
+      padding   : 5px 10px 5px 60px;
+      position  : relative;
+      background: url(//bizweb.dktcdn.net/100/391/529/themes/771486/assets/policy_1_icon.png?1659674601853) 10px 5px no-repeat;
+    }
+
+    p:nth-child(2) {
+      background-image: url(//bizweb.dktcdn.net/100/391/529/themes/771486/assets/policy_2_icon.png?1659674601853);
+    }
+
+    p:nth-child(3) {
+      background-image: url(//bizweb.dktcdn.net/100/391/529/themes/771486/assets/policy_3_icon.png?1659674601853);
+
+      span {
+        display    : block;
+        font-weight: bold;
+        font-size  : 20px;
+        color      : red;
+        line-height: 1;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+img {
+  max-width: 100% !important;
+}
+
+.top-seller {
+  text-decoration: none;
+  overflow       : hidden;
+  box-shadow     : 0px 2px 15px rgba(0, 0, 0, 0.12);
+
+  img {
+    padding   : 10px;
+    object-fit: cover;
+    height    : 200px;
+  }
+
+  b {
+    height: 50px;
+  }
+}

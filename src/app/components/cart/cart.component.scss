@@ -1,0 +1,32 @@
+.form-floating {
+  label {
+    opacity: 0.7;
+  }
+}
+
+.apply {
+  margin-left: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  height : 30px;
+  opacity: 1;
+}
+
+.content-box {
+  background-clip: padding-box;
+  color          : #545454;
+
+  .content-box_row {
+    display   : table;
+    box-sizing: border-box;
+    width     : auto;
+    position  : relative;
+    padding   : 0.3em;
+  }
+}

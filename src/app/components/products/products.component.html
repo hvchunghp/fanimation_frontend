@@ -1,0 +1,137 @@
+<app-loading *ngIf="checkLoad"></app-loading>
+
+<div *ngIf="!checkLoad">
+  <div class="container my-1 mb-5 pb-5">
+    <div class="breadCrumb p-2">
+      <div class="d-flex align-items-center text-dark">
+        <a routerLink="/" class="text-dark">Homepage</a>
+        <b>&ensp;>&ensp;</b>
+        <b class="text-dark">Product</b>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-12 col-12 my-5 sidebar">
+        <h3 class="title-side-bar p-2 text-light">
+          <i class="fa-regular fa-bars"></i> Category
+        </h3>
+        <div class="checkBox side-nav border border-black p-2 ">
+          <label class="container" (click)="getAllProduct()">Show all
+            <input type="radio" checked="checked" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container" (click)="chooseCategory(item.category)"
+            *ngFor="let item of category">{{item.categoryName}}
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <h3 class="title-side-bar p-2 text-light">
+          Price
+        </h3>
+        <div class="checkBox side-nav border border-black p-2 ">
+          <label class="container " (click)="aboutPrice('0-50')">Less than 50$
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container" (click)="aboutPrice('50-100')">50$ - 100$
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container" (click)="aboutPrice('100-150')">100$ - 150$
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container" (click)="aboutPrice('150-200')">150$ - 200$
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container" (click)="aboutPrice('200-999999999999')">Price over 200$
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="col-lg-9 col-md-12 col-12  my-2">
+        <div class="d-flex justify-content-end align-items-center">
+          <b class="px-1">Sort by: </b>
+          <div *ngIf="!selectAll">
+            <select name="" id="" class="py-1 selected-sort" (change)="sortBy($event)">
+              <option value="" hidden selected>Sort by</option>
+              <option value="productName-asc">Sort by name</option>
+              <option value="cost-asc">Prices increase gradually</option>
+              <option value="cost-desc">Prices gradually decrease</option>
+            </select>
+          </div>
+          <div *ngIf="selectAll">
+            <select name="" id="" class="py-1 selected-sort" (change)="allSortBy($event)">
+              <option value="" hidden selected>Sort by</option>
+              <option value="productName-asc">Sort by name</option>
+              <option value="cost-asc">Prices increase gradually</option>
+              <option value="cost-desc">Prices gradually decrease</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-6" *ngFor="let item of readData">
+            <div class="item-box">
+              <span class="glass-search d-flex justify-content-center align-items-center" (click)="getProduct(item.id)"
+                data-bs-toggle="modal" data-bs-target="#model"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <div class=" my-2 row justify-content-center content-box p-3">
+                <a [routerLink]="['/product', item.id]" class="m-3">
+                  <img src={{item.image}} class="img-fuild" alt="">
+                  <b class="d-flex align-items-center text-dark pro-name">{{item.productName}}</b>
+                </a>
+                <div class="d-flex justify-content-between">
+                  <b class="text-danger">{{item.cost}}</b>
+                  <b class="text-primary add-to-cart-btn" (click)="addToCart(item.id)">
+                    <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                  </b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="model">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Product details</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" *ngIf="productData">
+        <div class="row" *ngFor="let item of productData">
+          <div class="col-12 col-lg-4 col-md-4">
+            <img src="{{item.image}}" alt="" width="100%">
+          </div>
+          <div class="col-12 col-lg-8 col-md-8">
+            <div class="row">
+              <h1>{{item.productName}}</h1>
+              <div>
+                <span>Status: <b>{{item.status}}</b></span>
+                <span class="px-3">Category: <b>{{item.categoryName}}</b></span>
+              </div>
+              <h1 class="text-success">{{item.cost}}</h1>
+              <div class="mt-4 d-flex">
+                <button type="submit" name="add" class="btn btn-primary mx-1" (click)="addToCart(item.id)">
+                  <span>Add to cart</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bounce-loading" *ngIf="!productData">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>

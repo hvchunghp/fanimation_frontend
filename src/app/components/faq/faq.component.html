@@ -1,0 +1,18 @@
+<div class="container my-5">
+  <div *ngIf="faq">
+    <h3 class="my-5"><b>Frequently asked questions</b></h3>
+    <div class="row">
+      <details *ngFor="let item of faq">
+        <summary>
+          {{item.question}}
+        </summary>
+        <p class="d-flex align-items-center">
+          <i class="fa-solid fa-hand-point-right mx-3"></i>
+          <span class="">{{item.answer}}</span>
+        </p>
+      </details>
+    </div>
+  </div>
+  <app-loading *ngIf="!faq"></app-loading>
+
+</div>

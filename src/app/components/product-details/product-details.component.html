@@ -1,0 +1,87 @@
+<div *ngIf="productData && productData.length === 1">
+  <div class="container">
+    <div class="row my-5" *ngFor="let item of productData">
+      <img src="{{item.image}}" alt="" class="col-12 col-md-6 col-lg-4 border border-black image-product mb-3"
+        data-bs-toggle="modal" data-bs-target="#previewImg">
+      <div class="col-12 col-md-6 col-lg-5">
+        <div class="row">
+          <h2>{{item.productName}}</h2>
+          <h3 class="text-danger">{{item.cost}}</h3>
+          <span>Product ID: <b>{{item.id}}</b></span>
+          <span>Product status: <b class="text-success" *ngIf="item.status==='In stock'">{{item.status}} <b
+                *ngIf="item.status==='Out stock'">{{item.status}}</b></b></span>
+          <div class="row my-3">
+            <span class="text-primary">
+              FREE SHIP IN HANOI - ORDER FROM 500K
+            </span>
+            <span>
+              Address: No. 8, Ton That Thuyet, My Dinh, Hanoi.
+            </span>
+          </div>
+          <div class="my-3">
+            <button class="btn btn-primary my-1 d-flex justify-content-center" (click)="addToCart(item.id)">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="d-md-none d-lg-flex col-lg-3 row">
+        <div class="product-policy border border-solid">
+          <p>NATIONWIDE DELIVERY. Warranty 12 months</p>
+          <p>Return the product within 7 days if there is a defect from the manufacturer</p>
+          <p>Call to buy<span> +84 387.497.691</span>
+          </p>
+        </div>
+        <div class="product-news border-solid">
+          <h2>NEWS</h2>
+          <ul>
+            <li><i class="fa fa-caret-right"></i><span>Best selling ceiling fans</span></li>
+            <li><i class="fa fa-caret-right"></i><span>How to use electric fans safely</span>
+            </li>
+            <li><i class="fa fa-caret-right"></i><span>Decoding luxury ceiling fan fever</span></li>
+            <li><i class="fa fa-caret-right"></i><span>Fan price at Fanimation</span></li>
+            <li><i class="fa fa-caret-right"></i><span>Learn about electromechanical fans at Fanimation</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="background-color: #f5f5f5;" *ngFor="let item of productData" class="py-5">
+    <div class="container ">
+      <h1>Specifications-Description</h1>
+      <div [innerHTML]="item.description" class="my-5 description"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row my-5 d-none d-md-flex">
+      <h2 class="text-center mb-3"><b>YOU MAY ALSO LIKE</b></h2>
+      <a href="/product/{{item.id}}" class=" col mx-2 top-seller" *ngFor="let item of bestSeller">
+        <div class="text-center">
+          <img src="{{item.image}}" alt="">
+        </div>
+        <div class="row m-1">
+          <b class="d-flex align-items-center text-primary my-2">{{item.productName}}</b>
+          <div class="d-flex justify-content-between">
+            <span class="text-danger">
+              {{item.cost}}
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <app-comment></app-comment>
+
+</div>
+<app-loading *ngIf="!productData"></app-loading>
+<app-error *ngIf="productData.length === 0"></app-error>
+
+
+<div class="modal fade" id="previewImg" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl" *ngFor="let item of productData">
+    <img src="{{item.image}}" alt="">
+  </div>
+</div>
